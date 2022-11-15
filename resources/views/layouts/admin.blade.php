@@ -33,7 +33,7 @@
 
                 @if (Auth::check())
                     <!-- menu de navegacion -->
-                    <ul id="nav-mobile" class="rigth hide-on-med-and-down">
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li>
                             <a href="{{ route('admin') }}" title="Inicio">Inicio</a>
                         </li>

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,13 @@ Route::get('acerca-de', [AppController::class, 'acercade'])->name('acerca-de');
 
 //Back-end
 Route::get('admin', [AdminController::class, 'index'])->name('admin');
+Route::get('admin/usuarios', [UsuarioController::class, 'index'])->middleware('role:usuarios');
+Route::get('admin/usuarios/crear', [UsuarioController::class, 'crear'])->middleware('role:usuarios');
+Route::get('admin/usuarios/guardar', [UsuarioController::class, 'guardar'])->middleware('role:usuarios');
+Route::get('admin/usuarios/editar/{id}', [UsuarioController::class, 'editar'])->middleware('role:usuarios');
+Route::get('admin/usuarios/actualizar/{id}', [UsuarioController::class, 'actualizar'])->middleware('role:usuarios');
+Route::get('admin/usuarios/activar/{id}', [UsuarioController::class, 'activar'])->middleware('role:usuarios');
+Route::get('admin/usuarios/borrar/{id}', [UsuarioController::class, 'borrar'])->middleware('role:usuarios');
 
 //Auth
 Route::get('acceder', [AuthController::class, 'acceder'])->name('acceder');
