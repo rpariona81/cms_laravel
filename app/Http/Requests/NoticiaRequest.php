@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class NoticiaRequest extends FormRequest
 {
@@ -13,7 +15,8 @@ class NoticiaRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        //return false;
+        return Auth::check();
     }
 
     /**
@@ -21,10 +24,17 @@ class NoticiaRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(Request $request)
     {
-        return [
-            //
+        //Titulo requerido, máximo 32 caracteres
+        //Slug máximo 36 caracteres (no requerido porque se generaria solo)
+        //Entradilla máximo 128 caracteres (no requerida)
+        $rules = [
+            'titulo' => 'required|max:32',
+            'slug' => 'max:36',
+            'entradilla' => 'max:128',
         ];
+
+        return $rules;
     }
 }
